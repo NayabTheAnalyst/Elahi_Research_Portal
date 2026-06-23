@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bending without Breaking | Research Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 600px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 300px; 
+            max-height: 400px; 
+        }
+        .nav-link.active { border-bottom: 2px solid #4f46e5; color: #4f46e5; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(226, 232, 240, 0.8); }
+        .equation-font { font-family: 'Courier New', Courier, monospace; }
+    </style>
+</head>
+<body class="leading-normal">
+
+    <!-- Chosen Palette: Warm Neutrals & Indigo -->
+    <!-- Application Structure Plan: 
+        The SPA is organized into five thematic sections: 
+        1. Executive Overview (Contextual framing)
+        2. Participant Landscape (Interactive demographic data)
+        3. Theoretical Framework (Visualizing the mediation path)
+        4. Statistical Deep-Dive (Path coefficients and regression outputs)
+        5. Model Simulator (Interactive hypothesis testing)
+        
+        This structure was chosen to move the user from the general 'who and why' to the specific 'how and what,' 
+        concluding with an interactive tool that allows them to apply the research findings themselves.
+    -->
+    <!-- Visualization & Content Choices: 
+        - Demographics -> Pie/Bar Charts -> Contextual understanding of the Pakistan Telecom sector.
+        - Reliability -> Horizontal Bar -> Establishing trust in the measurement scales.
+        - Path Coefficients -> Interactive Path Diagram (HTML/CSS) -> Visualizing mediation logic.
+        - Regression Results -> Dynamic Comparison Chart -> Comparing direct vs. indirect effects.
+        - Model 83 Equation -> JS-powered Calculator -> Practical application of unstandardized coefficients.
+        
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-indigo-600 font-bold text-xl tracking-tight">ELAHI RESEARCH</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
+                    <a href="#overview" class="nav-link text-slate-600 hover:text-indigo-600 transition">Overview</a>
+                    <a href="#demographics" class="nav-link text-slate-600 hover:text-indigo-600 transition">Participants</a>
+                    <a href="#theory" class="nav-link text-slate-600 hover:text-indigo-600 transition">Framework</a>
+                    <a href="#results" class="nav-link text-slate-600 hover:text-indigo-600 transition">Results</a>
+                    <a href="#simulator" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">Model Simulator</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-r from-slate-900 to-indigo-900 text-white py-20">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Bending without Breaking</h1>
+            <p class="text-xl text-indigo-100 font-light mb-8">Examining the Effects of Social Capital on Individual Resilience, Project Citizenship Behavior, and Project Performance.</p>
+            <div class="flex flex-wrap justify-center gap-4 text-sm font-semibold">
+                <span class="bg-white/10 px-4 py-2 rounded-full border border-white/20">Nayab Elahi</span>
+                <span class="bg-white/10 px-4 py-2 rounded-full border border-white/20">Pakistan Telecommunications Sector</span>
+                <span class="bg-indigo-500 px-4 py-2 rounded-full shadow-lg">N = 250</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24">
+
+        <!-- Section 1: Executive Overview -->
+        <section id="overview" class="scroll-mt-20">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Research Overview</h2>
+                <p class="text-slate-600">This section details the primary objectives and contextual background of the study, highlighting why social capital is a critical asset in temporary project organizations.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold text-indigo-900">The Resilience Pathway</h3>
+                    <p class="text-slate-700 text-sm leading-relaxed">
+                        In the volatile telecommunications sector of Pakistan, projects often face extreme pressures. This study explores how <strong>Project Internal Social Capital (PISC)</strong>—the relational and cognitive bonds within a team—allows individuals to maintain performance. The thesis demonstrates that this is not a simple direct link, but a complex serial mediation involving individual psychological strength and altruistic behaviors.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li class="flex items-start gap-2"><span class="text-indigo-500 font-bold">✓</span> Analyzes Hayes' PROCESS Model 83.</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500 font-bold">✓</span> Identifies "Social Resourcefulness" as a boundary condition.</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500 font-bold">✓</span> Links psychological resilience to tangible project performance.</li>
+                    </ul>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-6 glass-card rounded-2xl text-center">
+                        <div class="text-3xl font-bold text-indigo-600">84%</div>
+                        <div class="text-xs text-slate-500 uppercase mt-2">Response Rate</div>
+                    </div>
+                    <div class="p-6 glass-card rounded-2xl text-center">
+                        <div class="text-3xl font-bold text-indigo-600">5,000</div>
+                        <div class="text-xs text-slate-500 uppercase mt-2">Bootstrap Resamples</div>
+                    </div>
+                    <div class="p-6 glass-card rounded-2xl text-center">
+                        <div class="text-3xl font-bold text-indigo-600">0.963</div>
+                        <div class="text-xs text-slate-500 uppercase mt-2">Scale Reliability (&alpha;)</div>
+                    </div>
+                    <div class="p-6 glass-card rounded-2xl text-center">
+                        <div class="text-3xl font-bold text-indigo-600">Significant</div>
+                        <div class="text-xs text-slate-500 uppercase mt-2">Serial Mediation</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Participants -->
+        <section id="demographics" class="scroll-mt-20">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Participant Landscape</h2>
+                <p class="text-slate-600">Explore the structural makeup of the study's sample. The diversity in roles, experience, and methodologies provides a robust basis for the research findings.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                    <h4 class="text-sm font-bold text-slate-500 uppercase mb-4 text-center">Gender & Role</h4>
+                    <div class="chart-container">
+                        <canvas id="genderChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                    <h4 class="text-sm font-bold text-slate-500 uppercase mb-4 text-center">Professional Experience</h4>
+                    <div class="chart-container">
+                        <canvas id="experienceChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                    <h4 class="text-sm font-bold text-slate-500 uppercase mb-4 text-center">Project Methodology</h4>
+                    <div class="chart-container">
+                        <canvas id="methodChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Framework -->
+        <section id="theory" class="scroll-mt-20">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">The Theoretical Framework</h2>
+                <p class="text-slate-600">Understand the hypothesized connections. Click on the interaction points to reveal the logic behind the moderated mediation model.</p>
+            </div>
+            <div class="bg-indigo-950 p-8 md:p-12 rounded-3xl text-white overflow-hidden relative">
+                <div class="relative z-10 grid md:grid-cols-4 gap-4 text-center items-center">
+                    <!-- Path nodes using HTML/CSS -->
+                    <div class="p-4 border border-indigo-500/30 rounded-xl bg-indigo-900/50">
+                        <div class="text-xs uppercase text-indigo-300 mb-1">Independent (IV)</div>
+                        <div class="font-bold">Social Capital (PISC)</div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-full h-0.5 bg-indigo-500 hidden md:block"></div>
+                        <div class="text-[10px] text-indigo-400 py-2">MODERATOR: Social Resourcefulness</div>
+                    </div>
+                    <div class="p-4 border border-indigo-500/30 rounded-xl bg-indigo-900/50">
+                        <div class="text-xs uppercase text-indigo-300 mb-1">Mediator 1</div>
+                        <div class="font-bold">Indiv. Resilience (IR)</div>
+                    </div>
+                    <div class="p-4 border border-indigo-500/30 rounded-xl bg-indigo-900/50">
+                        <div class="text-xs uppercase text-indigo-300 mb-1">Mediator 2</div>
+                        <div class="font-bold">Citizenship (PCB)</div>
+                    </div>
+                </div>
+                <div class="mt-8 flex justify-center">
+                    <div class="p-6 bg-white/5 border border-white/10 rounded-2xl text-center w-full max-w-md">
+                        <div class="text-xs uppercase text-indigo-300 mb-2">Outcome (DV)</div>
+                        <div class="text-2xl font-bold">Project Performance</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Results -->
+        <section id="results" class="scroll-mt-20">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Statistical Path Coefficients</h2>
+                <p class="text-slate-600">The findings reveal that while social capital has a direct effect, its primary impact is serial. All hypotheses except moderation were supported.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-slate-50 text-slate-500 font-bold uppercase text-[10px]">
+                            <tr>
+                                <th class="p-4 border-b">Path</th>
+                                <th class="p-4 border-b">Beta (b)</th>
+                                <th class="p-4 border-b">t-value</th>
+                                <th class="p-4 border-b">Result</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr>
+                                <td class="p-4 font-semibold">PISC &rarr; IR</td>
+                                <td class="p-4">0.6703</td>
+                                <td class="p-4">10.15</td>
+                                <td class="p-4 text-emerald-600 font-bold">Supported</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-semibold">IR &rarr; PCB</td>
+                                <td class="p-4">0.8028</td>
+                                <td class="p-4">16.08</td>
+                                <td class="p-4 text-emerald-600 font-bold">Supported</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-semibold">PCB &rarr; PP</td>
+                                <td class="p-4">0.6033</td>
+                                <td class="p-4">8.97</td>
+                                <td class="p-4 text-emerald-600 font-bold">Supported</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-semibold">PISC x SR &rarr; IR</td>
+                                <td class="p-4">-0.0424</td>
+                                <td class="p-4">-1.28</td>
+                                <td class="p-4 text-rose-500 font-bold">Rejected</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="chart-container">
+                    <canvas id="pathEffectChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Simulator -->
+        <section id="simulator" class="scroll-mt-20">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Model Interaction Simulator</h2>
+                <p class="text-slate-600">Enter hypothetical values for team social capital and individual resourcefulness to see how they impact overall project performance based on the study's regression equations.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Project Internal Social Capital (1-5)</label>
+                        <input type="range" id="sim-pisc" min="1" max="5" step="0.1" value="3.9" class="w-full h-2 bg-indigo-100 rounded-lg appearance-none cursor-pointer">
+                        <div class="text-right text-indigo-600 font-bold mt-1" id="pisc-val">3.9</div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Social Resourcefulness (1-6)</label>
+                        <input type="range" id="sim-sr" min="1" max="6" step="0.1" value="3.8" class="w-full h-2 bg-indigo-100 rounded-lg appearance-none cursor-pointer">
+                        <div class="text-right text-indigo-600 font-bold mt-1" id="sr-val">3.8</div>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-xl text-[11px] text-slate-500 font-mono">
+                        Equation: PP = -0.8594 + 0.2244(PISC) + 0.4781(IR) + 0.6033(PCB)
+                    </div>
+                </div>
+                <div class="bg-indigo-600 text-white p-8 rounded-3xl shadow-xl flex flex-col justify-center items-center space-y-4">
+                    <div class="text-indigo-200 uppercase tracking-widest text-xs font-bold">Predicted Performance Score</div>
+                    <div class="text-7xl font-bold" id="result-pp">0.00</div>
+                    <div class="text-center">
+                        <div class="text-sm font-medium text-indigo-100">Individual Resilience: <span id="result-ir" class="font-bold">0.00</span></div>
+                        <div class="text-sm font-medium text-indigo-100">Citizenship Behavior: <span id="result-pcb" class="font-bold">0.00</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-16 mt-24">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+            <p class="text-sm">&copy; 2024 Elahi Research Repository | Data Sourced from Riphah International University</p>
+            <p class="text-[10px] uppercase tracking-widest">Pakistan Telecommunications Sector Empirical Analysis</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data Initialization
+        const demographics = {
+            gender: [70, 30], // Male, Female
+            experience: [22.8, 27.2, 32.4, 16.0, 1.6], // 1-5, 6-10, 11-15, 15-20, 20+
+            methods: [43.2, 28.4, 28.4] // Agile, Waterfall, Hybrid
+        };
+
+        // Chart.js Default Settings
+        Chart.defaults.color = '#64748b';
+        Chart.defaults.font.family = 'Inter';
+
+        // Gender Chart
+        new Chart(document.getElementById('genderChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Male', 'Female'],
+                datasets: [{
+                    data: demographics.gender,
+                    backgroundColor: ['#4f46e5', '#c7d2fe'],
+                    borderWidth: 0
+                }]
+            },
+            options: { maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+        });
+
+        // Experience Chart
+        new Chart(document.getElementById('experienceChart'), {
+            type: 'bar',
+            data: {
+                labels: ['1-5 yrs', '6-10 yrs', '11-15 yrs', '15-20 yrs', '20+ yrs'],
+                datasets: [{
+                    label: 'Sample %',
+                    data: demographics.experience,
+                    backgroundColor: '#6366f1',
+                    borderRadius: 4
+                }]
+            },
+            options: { 
+                maintainAspectRatio: false, 
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } }
+            }
+        });
+
+        // Methodology Chart
+        new Chart(document.getElementById('methodChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Agile', 'Waterfall', 'Hybrid'],
+                datasets: [{
+                    data: demographics.methods,
+                    backgroundColor: ['#4338ca', '#6366f1', '#a5b4fc'],
+                    borderWidth: 0
+                }]
+            },
+            options: { maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+        });
+
+        // Effect Chart (Path Coefficients)
+        new Chart(document.getElementById('pathEffectChart'), {
+            type: 'bar',
+            data: {
+                labels: ['PISC->IR', 'IR->PCB', 'PCB->PP', 'PISC->PP (Dir)'],
+                datasets: [{
+                    label: 'Coefficient (b)',
+                    data: [0.6703, 0.8028, 0.6033, 0.2244],
+                    backgroundColor: '#4f46e5',
+                    borderRadius: 6
+                }]
+            },
+            options: { 
+                indexAxis: 'y',
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { x: { beginAtZero: true } }
+            }
+        });
+
+        // Simulator Logic
+        const piscInput = document.getElementById('sim-pisc');
+        const srInput = document.getElementById('sim-sr');
+        const piscValLabel = document.getElementById('pisc-val');
+        const srValLabel = document.getElementById('sr-val');
+        
+        const resultPP = document.getElementById('result-pp');
+        const resultIR = document.getElementById('result-ir');
+        const resultPCB = document.getElementById('result-pcb');
+
+        function updateSimulation() {
+            const PISC = parseFloat(piscInput.value);
+            const SR = parseFloat(srInput.value);
+            
+            piscValLabel.innerText = PISC.toFixed(1);
+            srValLabel.innerText = SR.toFixed(1);
+
+            // Regression Equations from Thesis Plan
+            // IR = 4.0874 + 0.1148(PISC) + 0.8019(SR) - 0.0424(PISC*SR)
+            const IR = 4.0874 + (0.1148 * PISC) + (0.8019 * SR) - (0.0424 * PISC * SR);
+            
+            // PCB = 0.2669 + 0.5115(PISC) + 0.8028(IR)
+            const PCB = 0.2669 + (0.5115 * PISC) + (0.8028 * IR);
+            
+            // PP = -0.8594 + 0.2244(PISC) + 0.4781(IR) + 0.6033(PCB)
+            const PP = -0.8594 + (0.2244 * PISC) + (0.4781 * IR) + (0.6033 * PCB);
+
+            resultIR.innerText = IR.toFixed(2);
+            resultPCB.innerText = PCB.toFixed(2);
+            resultPP.innerText = PP.toFixed(2);
+        }
+
+        [piscInput, srInput].forEach(input => input.addEventListener('input', updateSimulation));
+        
+        // Initial Run
+        window.onload = updateSimulation;
+
+    </script>
+</body>
+</html>
